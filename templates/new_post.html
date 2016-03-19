@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+{% block title %}
+    new post
+{% endblock %}
+{% block content %}
+    <h1>new post!!</h1>
+
+ <form action="/add" method="post" class="pure-form pure-form-stacked">
+       <fieldset>
+    <label for="title">Title:</label>
+    <input type="text" name="title" id="title" class="pure-input-1-2" placeholder="Title me like one of your French girls...">
+    <label for="blog">Blog: </label>
+        <textarea type="text" name="blog" id="blog" class="pure-input-1-2" placeholder="Blog your heart out..."></textarea>
+    <button type="submit" class="pure-button pure-button-primary">POST!</button>
+        </fieldset>
+    </form>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html'%}
+{% block title %}
+        index
+{% endblock %}
+{% block content %}
+    <h1>Website!!</h1>
+
+    {% if session.auth_user %}
+        <!-- <a href="/new_post.html">New post</a> -->
+        <form method="GET" action="new_post.html">
+        <input class="pure-button pure-button-primary" type="submit" value="New Post">
+        </form>
+
+        <p>You are logged in as {{ session.auth_user }}</p>
+
+        <form method="GET" action="/logout">
+        <input class="pure-button " type="submit" value="Log Out">
+        </form>
+
+        <!-- <p>You are logged in as {{ session.auth_user }}. <a href="/logout">Log Out</a>.</p> -->
+    {% else %}
+        <!-- <a href="/login.html">Log In</a> -->
+        <form method="GET" action="login.html">
+        <input class="pure-button pure-button-primary" type="submit" value="Log In">
+        </form>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,21 @@
+<!-- this is the base html, where other html pages will be templated from -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <meta name = "viewport" content="width=device-width, initial-scale=1.0"> <!-- This code is magical and helps mobile -->
+    <title>{% block title %} PUT TITLE HERE {% endblock %}</title>
+</head>
+<body>
+{% block content %}
+{% if session.auth_user %}
+  <div>Logged in as {{ session.auth_user }}</div>
+  <a href="/logout?url={{ request.path }}" class="pure-button logout">Log Out</a>
+  {% else %}
+    <a href="/login?url={{ request.path }}" class="pure-button login">Log In</a>
+  {% endif %}
+{% endblock %}
+</body>
+</html>

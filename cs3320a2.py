@@ -5,6 +5,7 @@ app = Flask(__name__)
 
 app.config.from_pyfile('settings.py')
 
+blog_list = []
 
 
 @app.route('/')
@@ -15,20 +16,29 @@ def index():
 def login():
     return flask.render_template('login.html')
 
-@app.route('/new_post.html')
-def new_post():
-    return flask.render_template('new_post.html')
+@app.route('/posts/<int:pid>')
+def new_post(pid):
+    #if pid < 0 or pid >= len(posts):
+        #flask.abort(404)
+
+    blog_post = blog_list[pid]
+    return flask.render_template('posts.html', blog_post=blog_post)
 
 @app.route('/posts.html')
 def posts():
     return flask.render_template('posts.html')
 
+@app.route('/add')
+def add_form():
+    return flask.render_template('new_post.html')
+
 @app.route('/add', methods=['POST'])
-def add_animal():
+def add_post():
     title = flask.request.form['title']
     blog = flask.request.form['blog']
-
-    return flask.redirect(flask.url_for('posts'), code=303)
+    pid = len(blog_list)
+    blog_list.append({'title': title, 'blog': blog})
+    return flask.redirect(flask.url_for('new_post', pid=pid), code=303)
 
 @app.route('/login', methods=['POST'])
 def handle_login():

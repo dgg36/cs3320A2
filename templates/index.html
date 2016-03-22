@@ -3,8 +3,11 @@
         index
 {% endblock %}
 {% block content %}
-    <h1>Website!!</h1>
 
+
+    <div class="pure-g">
+    <div class="pure-u-1-5">
+    <h1>Website!!</h1>
     {% if session.auth_user %}
         <!-- <a href="/new_post.html">New post</a> -->
         <form method="GET" action="/add">
@@ -24,16 +27,20 @@
         <input class="pure-button pure-button-primary" type="submit" value="Log In">
         </form>
     {% endif %}
+    </div>
 
 
+
+    <div class="pure-u-4-5">
     <h1> Recent Posts </h1>
 
     {% for items in blog_list %}
-        <article>
+        <article class = "spacing">
         <div class = "blog-h1"> {{ items.title }}</div>
             <p> {{ items.blog }}</p>
         </article>
     {% endfor %}
-
+    </div>
+       </div>
 
 {% endblock %}

@@ -12,9 +12,11 @@ h2 {
     font-weight: 300;
 }
 
+
 .blog-h1 {
     font-size: 1.1rem;
     font-weight: 300;
+    color: mediumpurple;
 }
 
 .error {
@@ -25,12 +27,27 @@ h2 {
     background-color: purple;
 }
 
+.spacing{
+ width: 300px;
+    padding: 25px;
+    border: 25px solid navy;
+    margin: 25px;
+    word-wrap: normal;
+
+}
+
 .sidebar {
     box-sizing: border-box;
     padding-left: 1ex;
 }
 .sidebar h1 {
     text-align: center;
+}
+
+.form {
+    width: 100%;
+    float: left;
+    padding-left: 1ex;
 }
 
 @media screen and (min-width: 48em) {

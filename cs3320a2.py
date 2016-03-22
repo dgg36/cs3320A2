@@ -18,16 +18,26 @@ if os.path.exists("posts_catalog.json"):
 @app.route('/')
 def index():
     if blog_list:
-        #blog_post = blog_list[len(blog_list) - 1]
-        temp = blog_list[len(blog_list) - 1]
-        title = Markup(markdown.markdown(temp['title'], output_format = 'html5'))
-        blog = Markup(markdown.markdown(temp['blog'], output_format = 'html5'))
-        temp.update({'title' : title, 'blog' : blog})
-    #blog_post = ({'title':title, 'blog':blog})
+        reverse_list = []
+        reverse_list = blog_list
+        reverse_list = list(reversed(reverse_list))
+        # temp = blog_list[len(blog_list) - 1]
+        # title = temp['title']
+        # blog = Markup(markdown.markdown(temp['blog'], output_format = 'html5'))
+        # temp.update({'title' : title, 'blog' : blog})
+        i = 0
+
+        while (i < len(reverse_list)):
+            post = reverse_list[i]
+            title = post['title']
+            blog = Markup(markdown.markdown(post['blog'], output_format = 'html5'))
+            post.update({'title' : title, 'blog' : blog})
+            i += 1
+
     else:
         blog_post = ""
 
-    return flask.render_template('index.html', blog_post=temp, blog_list=blog_list)
+    return flask.render_template('index.html', blog_list= reverse_list)#, blog_post=temp)
 
 
 @app.route('/login.html')

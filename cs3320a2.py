@@ -21,10 +21,6 @@ def index():
         reverse_list = []
         reverse_list = blog_list
         reverse_list = list(reversed(reverse_list))
-        # temp = blog_list[len(blog_list) - 1]
-        # title = temp['title']
-        # blog = Markup(markdown.markdown(temp['blog'], output_format = 'html5'))
-        # temp.update({'title' : title, 'blog' : blog})
         i = 0
 
         while (i < len(reverse_list)):
@@ -37,7 +33,7 @@ def index():
     else:
         blog_post = ""
 
-    return flask.render_template('index.html', blog_list= reverse_list)#, blog_post=temp)
+    return flask.render_template('index.html', blog_list= reverse_list)
 
 
 @app.route('/login.html')

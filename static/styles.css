@@ -16,7 +16,7 @@ h2 {
 .blog-h1 {
     font-size: 1.1rem;
     font-weight: 300;
-    color: mediumpurple;
+    color: purple;
 }
 
 .error {
@@ -26,6 +26,11 @@ h2 {
 .pure-button-primary {
     background-color: purple;
 }
+
+body {
+    background-image: url("http://www.designhouseonline.co.uk/image/cache/banbury/cole-son-victorian-trellis-grey-wallpaper-306-350x350.jpg");
+}
+
 
 .spacing{
  width: 300px;

@@ -26,6 +26,7 @@ def index():
     #blog_post = ({'title':title, 'blog':blog})
     else:
         blog_post = ""
+
     return flask.render_template('index.html', blog_post=temp)
 
 

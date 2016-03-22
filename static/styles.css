@@ -12,6 +12,9 @@ h2 {
     font-weight: 300;
 }
 
+.wrapped {
+    word-wrap: normal;
+}
 
 .blog-h1 {
     font-size: 1.1rem;
@@ -33,12 +36,11 @@ body {
 
 
 .spacing{
- width: 300px;
+ width: 60%;
     padding: 25px;
-    border: 25px solid navy;
+    border: 15px solid navy;
     margin: 25px;
-    word-wrap: normal;
-
+    word-wrap: break-word;
 }
 
 .sidebar {

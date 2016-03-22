@@ -18,10 +18,15 @@ if os.path.exists("posts_catalog.json"):
 @app.route('/')
 def index():
     if blog_list:
-        blog_post = blog_list[len(blog_list) - 1]
+        #blog_post = blog_list[len(blog_list) - 1]
+        temp = blog_list[len(blog_list) - 1]
+        title = Markup(markdown.markdown(temp['title'], output_format = 'html5'))
+        blog = Markup(markdown.markdown(temp['blog'], output_format = 'html5'))
+        temp.update({'title' : title, 'blog' : blog})
+    #blog_post = ({'title':title, 'blog':blog})
     else:
         blog_post = ""
-    return flask.render_template('index.html', blog_post=blog_post)
+    return flask.render_template('index.html', blog_post=temp)
 
 
 @app.route('/login.html')
@@ -33,7 +38,12 @@ def login():
 def new_post(pid):
     if pid < 0 or pid >= len(blog_list):
         flask.abort(404)
-    blog_post = blog_list[pid]
+
+    temp = blog_list[pid]
+    title = temp['title']
+    blog = Markup(markdown.markdown(temp['blog'], output_format = 'html5'))
+    blog_post = ({'title':title, 'blog':blog})
+    # blog_post = blog_list[pid]
     return flask.render_template('posts.html', blog_post=blog_post)
 
 
@@ -49,8 +59,7 @@ def add_form():
 
 @app.route('/add', methods=['POST'])
 def add_post():
-    title = Markup(markdown.markdown(flask.request.form['title'], output_format='html5'))
-    tab_title = flask.request.form['title']
+    title = flask.request.form['title']
     blog = Markup(markdown.markdown(flask.request.form['blog'], output_format='html5'))
     pid = len(blog_list)
     blog_list.append({'title': title, 'blog': blog})

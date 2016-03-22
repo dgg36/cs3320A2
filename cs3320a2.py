@@ -92,5 +92,10 @@ def handle_logout():
     # redirect to specfied source URL, or / if none is present
     return flask.redirect(flask.request.args.get('url', '/'))
 
+
+@app.errorhandler(404)
+def bad_page(err):
+    return flask.render_template('404.html', path=flask.request.path), 404
+
 if __name__ == '__main__':
     app.run()

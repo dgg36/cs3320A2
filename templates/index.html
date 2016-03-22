@@ -36,7 +36,7 @@
 
     {% for items in blog_list %}
         <article class = "spacing">
-        <a class = "blog-h1" href = "/posts/{{items}}"> {{ items.title }}</a>
+        <a class = "blog-h1" href = "/posts/{{items.id}}"> {{ items.title }}</a>
             <p class = "wrapped"> {{ items.blog }}</p>
         </article>
     {% endfor %}

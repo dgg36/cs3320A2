@@ -27,8 +27,12 @@ def index():
             post = reverse_list[i]
             title = post['title']
             blog = Markup(markdown.markdown(post['blog'], output_format = 'html5'))
-            post.update({'title' : title, 'blog' : blog})
+            id = len(reverse_list) - i
+            id -= 1
+            post.update({'title' : title, 'blog' : blog, 'id': id})
             i += 1
+
+
 
     else:
         blog_post = ""

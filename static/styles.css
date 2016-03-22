@@ -12,6 +12,11 @@ h2 {
     font-weight: 300;
 }
 
+.blog-h1 {
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
 .error {
     color: red;
 }

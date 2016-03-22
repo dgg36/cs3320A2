@@ -1,44 +1,66 @@
-from flask import Flask
 import flask
-
+import json
+from flask import Flask
+import markdown
+from markupsafe import Markup
+import os
 app = Flask(__name__)
 
 app.config.from_pyfile('settings.py')
 
 blog_list = []
 
+if os.path.exists("posts_catalog.json"):
+    with open('posts_catalog.json', 'r', encoding='utf-8') as yf:
+        blog_list = json.load(yf)
+
 
 @app.route('/')
 def index():
-    return flask.render_template('index.html')
+    if blog_list:
+        blog_post = blog_list[len(blog_list) - 1]
+    else:
+        blog_post = ""
+    return flask.render_template('index.html', blog_post=blog_post)
+
 
 @app.route('/login.html')
 def login():
     return flask.render_template('login.html')
 
+
 @app.route('/posts/<int:pid>')
 def new_post(pid):
-    #if pid < 0 or pid >= len(posts):
-        #flask.abort(404)
-
+    if pid < 0 or pid >= len(blog_list):
+        flask.abort(404)
     blog_post = blog_list[pid]
     return flask.render_template('posts.html', blog_post=blog_post)
+
 
 @app.route('/posts.html')
 def posts():
     return flask.render_template('posts.html')
 
+
 @app.route('/add')
 def add_form():
     return flask.render_template('new_post.html')
 
+
 @app.route('/add', methods=['POST'])
 def add_post():
-    title = flask.request.form['title']
-    blog = flask.request.form['blog']
+    title = Markup(markdown.markdown(flask.request.form['title'], output_format='html5'))
+    tab_title = flask.request.form['title']
+    blog = Markup(markdown.markdown(flask.request.form['blog'], output_format='html5'))
     pid = len(blog_list)
     blog_list.append({'title': title, 'blog': blog})
+
+    # Write saved blog posts to a file.
+    with open('posts_catalog.json', 'w') as file:
+        json.dump(blog_list, file)
+
     return flask.redirect(flask.url_for('new_post', pid=pid), code=303)
+
 
 @app.route('/login', methods=['POST'])
 def handle_login():

@@ -1,9 +1,10 @@
 {% extends 'base.html'%}
 {% block title %}
-        {{ title }}
+        {{ blog_post.title }}
 {% endblock %}
 {% block content %}
-    <h1>{{ blog_post.title }}</h1>
-
-    <p>{{ blog }}</p>
+    <article>
+        <h1>{{ blog_post.title }}</h1>
+        <p>{{ blog_post.blog }}</p>
+    </article>
 {% endblock %}

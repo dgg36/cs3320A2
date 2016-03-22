@@ -10,18 +10,13 @@
     <title>{% block title %} PUT TITLE HERE {% endblock %}</title>
 </head>
 <body>
-{#<div class="pure-g">#}
-{#    <div class="pure-u-2-5">#}
 {% block content %}
 {% if session.auth_user %}
   <div>Logged in as {{ session.auth_user }}</div>
   <a href="/logout?url={{ request.path }}" class="pure-button logout">Log Out</a>
   {% else %}
     <a href="/login?url={{ request.path }}" class="pure-button login">Log In</a>
-    <!-- -->
   {% endif %}
 {% endblock %}
-{#    </div>#}
-{#</div>#}
 </body>
 </html>

@@ -31,11 +31,8 @@ def index():
             id -= 1
             post.update({'title' : title, 'blog' : blog, 'id': id})
             i += 1
-
-
-
     else:
-        blog_post = ""
+        reverse_list = []
 
     return flask.render_template('index.html', blog_list= reverse_list)
 
@@ -54,7 +51,6 @@ def new_post(pid):
     title = temp['title']
     blog = Markup(markdown.markdown(temp['blog'], output_format = 'html5'))
     blog_post = ({'title':title, 'blog':blog})
-    # blog_post = blog_list[pid]
     return flask.render_template('posts.html', blog_post=blog_post)
 
 

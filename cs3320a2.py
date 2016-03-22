@@ -27,7 +27,7 @@ def index():
     else:
         blog_post = ""
 
-    return flask.render_template('index.html', blog_post=temp)
+    return flask.render_template('index.html', blog_post=temp, blog_list=blog_list)
 
 
 @app.route('/login.html')

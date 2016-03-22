@@ -28,11 +28,12 @@
 
     <h1> Recent Posts </h1>
 
-
+    {% for items in blog_list %}
         <article>
-        <div class = "blog-h1"> {{ blog_post.title }}</div>
-            <p> {{ blog_post.blog }}</p>
+        <div class = "blog-h1"> {{ items.title }}</div>
+            <p> {{ items.blog }}</p>
         </article>
+    {% endfor %}
 
 
 {% endblock %}
